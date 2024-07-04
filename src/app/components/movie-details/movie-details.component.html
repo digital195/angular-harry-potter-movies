@@ -1,0 +1,42 @@
+@if (movie$ | async; as movie) {
+  <div class="d-flex flex-column gap-4">
+    <div>
+      <button type="button" class="btn btn-light" [routerLink]="['/']">← Back</button>
+    </div>
+
+    <h3>{{ movie.title }}</h3>
+
+    <div class="d-flex gap-4">
+      <img src="{{ movie.poster }}" width="225" height="300" alt="Movie Poster" loading="lazy" />
+
+      <p><span class="fw-bold">Summary:</span> {{ movie.summary }}</p>
+    </div>
+
+    <h5 class="text-center">Details</h5>
+
+    <table class="table table-bordered">
+      <tbody>
+        <tr>
+          <th class="col-3 bg-light border-right text-end" scope="row">Box office</th>
+          <td>{{ movie.box_office | budget }}</td>
+        </tr>
+        <tr>
+          <th class="col-3 bg-light border-right text-end" scope="row">Budget</th>
+          <td>{{ movie.budget | budget }}</td>
+        </tr>
+        <tr>
+          <th class="col-3 bg-light border-right text-end" scope="row">Duration</th>
+          <td>{{ movie.duration | duration }}</td>
+        </tr>
+        <tr>
+          <th class="col-3 bg-light border-right text-end" scope="row">Producers</th>
+          <td>{{ movie.producers | join: ', ' }}</td>
+        </tr>
+        <tr>
+          <th class="col-3 bg-light border-right text-end" scope="row">Cinematographers</th>
+          <td>{{ movie.cinematographers | join: ', ' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+}

@@ -1,0 +1,43 @@
+<div class="d-flex flex-column gap-4">
+  <div class="bg-light p-4">
+    <h5>Filters</h5>
+
+    <div class="d-flex justify-content-between gap-4">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Title</span>
+        </div>
+        <input
+          [formControl]="filterForm.controls.title"
+          type="text"
+          class="form-control"
+          name="title"
+          placeholder="Title"
+        />
+      </div>
+
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Release year</span>
+        </div>
+        <input
+          [formControl]="filterForm.controls.releaseYear"
+          type="number"
+          class="form-control"
+          name="releaseYear"
+          placeholder="Release year"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex flex-column gap-1">
+    @for (movie of filteredMovies$ | async; track movie.id) {
+      <app-movie-list-item [movie]="movie"> </app-movie-list-item>
+    } @empty {
+      <div class="p-2">
+        <h5>No movies found!</h5>
+      </div>
+    }
+  </div>
+</div>
